@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reseteo.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Validar IBAN</title>
+  </head>
+  <body>
+    <div class="root">
+      <h3>Introduzca el IBAN</h3>
+      <form class="contenedor-buscar">
+        <div class="contenedor-buscar">
+          <input type="text" name="iban" id="iban" />
+          <button id="buscar">Buscar</button>
+        </div>
+      </form>
+      <div id="resultado"></div>
+    </div>
+    <script type="module" src="validarBanco.ts"></script>
+  </body>
+</html>
