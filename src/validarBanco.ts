@@ -1,42 +1,10 @@
 import { limpiarIBAN, extraerInformacion } from "./ibanUtils";
-import { Informacion } from "./ui";
+import { Informacion } from "./modelo";
+import { crearContenedorInformacion } from "./ui";
 
 const inputIBAN = document.querySelector<HTMLInputElement>("#iban");
 const botonBuscar = document.querySelector<HTMLButtonElement>("#buscar");
 const resultadoDiv = document.querySelector<HTMLDivElement>("#resultado");
-
-const crearElementoParrafo = (
-  texto: string,
-  etiqueta: string
-): HTMLParagraphElement => {
-  const parrafo = document.createElement("p");
-  parrafo.innerHTML = `<strong>${etiqueta}:</strong> ${texto}`;
-  return parrafo;
-};
-
-const crearContenedorInformacion = (
-  informacion: Informacion
-): HTMLDivElement => {
-  const elementoInformacion = document.createElement("div");
-  elementoInformacion.classList.add("informacion-contenedor");
-
-  const banco = crearElementoParrafo(informacion.banco, "Banco");
-  elementoInformacion.appendChild(banco);
-
-  const sucursal = crearElementoParrafo(informacion.sucursal, "Sucursal");
-  elementoInformacion.appendChild(sucursal);
-
-  const digitoDeControl = crearElementoParrafo(
-    informacion.digitoDeControl,
-    "Digito de Control"
-  );
-  elementoInformacion.appendChild(digitoDeControl);
-
-  const cuenta = crearElementoParrafo(informacion.cuenta, "Número de Cuenta");
-  elementoInformacion.appendChild(cuenta);
-
-  return elementoInformacion;
-};
 
 const sacarInformacion = async (evento: Event) => {
   evento.preventDefault();
@@ -57,8 +25,7 @@ const sacarInformacion = async (evento: Event) => {
       resultadoDiv.classList.remove("success");
     } else {
       resultadoDiv.innerHTML = "";
-      resultadoDiv.innerHTML += `<p class="success">El IBAN está bien formado</p>`;
-      resultadoDiv.innerHTML += `<p class="success">El IBAN es válido</p>`;
+      resultadoDiv.innerHTML += `<p class="success">El IBAN está bien formado, por lo tanto, está bien formado</p>`;
 
       resultadoDiv.appendChild(
         crearContenedorInformacion(resultado as Informacion)
